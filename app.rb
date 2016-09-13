@@ -3,10 +3,15 @@ require 'sinatra'
 
 class App < Sinatra::Base
   get '/' do
-    "Hello World"
+    'Hello World'
   end
 
   get '/api/recent_purchases/:username' do
+    purchases = ::Purchases.recent_purchases_by_user(params[:username])
+    purchases['purchases'].map do |product_id|
+      people = ::Purchases.people_who_purchased(product_id)
+      product = ::Product.products_by_id(product_id)
+    end
     # 1. fetch 5 recent purchases for the user: GET /api/purchases/by_user/:username?limit=5
     # 2. for each of those products, get a list of all people who previously purchased that product: GET /api/purchases/by_product/:product_id
     # 3. at the same time, request info about the products: GET /api/products/:product_id
@@ -27,6 +32,5 @@ class App < Sinatra::Base
     #   },
     #   ...
     # ]
-    "Hello World #{params[:username]}"
   end
 end

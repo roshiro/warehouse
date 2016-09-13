@@ -1,5 +1,5 @@
 class RequestDispatcher
   include HTTParty
 
-  base_uri 'localhost:8080'
+  base_uri 'http://localhost:8000/'
 end
