@@ -4,18 +4,18 @@ class Purchases
   # Returns most recent purchases by user
   #
   # @param username [String] username
-  # @return [Object] HTTP Response
+  # @return [Array] Array of purchases
   def self.recent_purchases_by_user(username)
-    ::RequestDispatcher.get("#{PATH}/by_user/#{username}?limit=5")
+    ::RequestDispatcher.get("#{PATH}/by_user/#{username}?limit=5")['purchases']
   end
 
   # Returns people who purchased a specific product.
   #
   # @param product_id [Integet] Product ID
-  # @return [Object] HTTP Response
-  def self.people_who_purchased(product_id)
-    ::RequestDispatcher.get("#{PATH}/by_product/#{product_id}")
+  # @return [Array] Array of purchases
+  def self.purchases_by_product(product_id)
+    ::RequestDispatcher.get("#{PATH}/by_product/#{product_id}")['purchases']
   end
 
-  # private_constant :PATH
+  private_constant :PATH
 end

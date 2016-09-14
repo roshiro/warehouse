@@ -5,9 +5,9 @@ class Products
   #
   # @param product_id [Integet] product ID
   # @return [Object] HTTP Response
-  def self.products_by_id(product_id)
-    RequestDispatcher.get("#{PATH}#{product_id}")
+  def self.product_by_id(product_id)
+    RequestDispatcher.get("#{PATH}#{product_id}")['product']
   end
 
-  # private_constant :PATH
+  private_constant :PATH
 end

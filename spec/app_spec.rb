@@ -7,14 +7,6 @@ describe 'App' do
     App
   end
 
-  describe '/' do
-    it "says hello" do
-      get '/'
-      expect(last_response).to be_ok
-      expect(last_response.body).to eq('Hello World')
-    end
-  end
-
   describe 'recent purchases by username' do
     before :each do
       @result = get "/api/recent_purchases/#{username}"
