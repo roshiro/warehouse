@@ -6,7 +6,7 @@ class Users
   # @param username [String] username of the user
   # @return [Hash] Hash representing user
   def self.user_by_username(username)
-    RequestDispatcher.get("#{PATH}#{username}")['user']
+    RequestDispatcher.get_and_cache("#{PATH}#{username}")['user']
   end
 
   private_constant :PATH
