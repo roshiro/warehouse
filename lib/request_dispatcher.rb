@@ -1,18 +1,13 @@
 class RequestDispatcher
-  include HTTParty
+  include ::HTTParty
 
   base_uri 'http://74.50.59.155:6000/'
 
+  # Returns the cached result or makes the GET Request.
+  #
+  # @param path [String] URL
   def self.get_and_cache(path)
-    if self.cache[path]
-      puts "cached #{path}"
-      self.cache[path]
-    else
-      puts "caching #{path}"
-      response = self.get(path)
-      self.cache[path] = response
-      response
-    end
+    self.cache[path] || (self.cache[path] = self.get(path))
   end
 
   def self.cache
