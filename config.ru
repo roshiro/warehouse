@@ -1,4 +1,5 @@
 require 'httparty'
+require 'redis'
 require './app'
 require './lib/users'
 require './lib/purchases'

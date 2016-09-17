@@ -5,7 +5,6 @@ require 'json'
 class App < Sinatra::Base
   get '/api/recent_purchases/:username' do
     content_type :json
-
     if ::Users.user_by_username(params[:username]).nil?
       "User with username of '#{params[:username]}' was not found"
     else

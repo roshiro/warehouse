@@ -7,10 +7,17 @@ class RequestDispatcher
   #
   # @param path [String] URL
   def self.get_and_cache(path)
-    self.cache[path] || (self.cache[path] = self.get(path))
+    if cached = self.cache.get(path)
+      JSON.parse(cached)
+    else
+      result = self.get(path)
+      self.cache.set(path, result.to_json)
+      result
+    end
   end
 
   def self.cache
-    @@ccache ||= {}
+    @@redis ||= Redis.new(:url => "redis://:warehouse@pub-redis-19214.us-east-1-3.2.ec2.garantiadata.com:19214")
+    @@redis
   end
 end
