@@ -1,6 +1,5 @@
 # app.rb
-require 'sinatra'
-require 'json'
+require 'sinatra/base'
 
 class App < Sinatra::Base
   get '/api/recent_purchases/:username' do
